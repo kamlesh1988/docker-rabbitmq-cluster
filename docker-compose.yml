@@ -1,5 +1,6 @@
 rabbit1:
   image: harbur/rabbitmq-cluster
+  restart: always
   hostname: rabbit1
   environment:
     - ERLANG_COOKIE=abcdefg
@@ -8,6 +9,7 @@ rabbit1:
     - "15672:15672"
 rabbit2:
   image: harbur/rabbitmq-cluster
+  restart: always
   hostname: rabbit2
   links:
     - rabbit1
@@ -20,6 +22,7 @@ rabbit2:
     - "15673:15672"
 rabbit3:
   image: harbur/rabbitmq-cluster
+  restart: always
   hostname: rabbit3
   links:
     - rabbit1
@@ -29,3 +32,4 @@ rabbit3:
     - CLUSTER_WITH=rabbit1
   ports:
     - "5674:5672"
+    - "15674:15672"
